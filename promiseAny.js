@@ -17,6 +17,7 @@ promiseMyAny([p1, p2, p3])
 function promiseMyAny(promises) {
     return new Promise((res, rej) => {
         let count = 0;
+        const errors = [];
         for (let i = 0; i < promises.length; i++) {
             const el = promises[i];
             Promise.resolve(el)
@@ -25,8 +26,9 @@ function promiseMyAny(promises) {
                 })
                 .catch(err => {
                     count++;
+                    errors[i] = err
                     if (count === promises.length) {
-                        rej("All promises were rejected");
+                        rej(new AggregateError(errors, "All promises were rejected"));
                     }
                 });
         }
