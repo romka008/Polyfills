@@ -7,11 +7,11 @@ const p3 = new Promise((resolve, reject) => {
 });
 
 Promise.any([p1, p2, p3])
-    .then(res => console.log(res))
+    .then(res => console.log(res)) //  3
     .catch(err => console.error(err));
 
 promiseMyAny([p1, p2, p3])
-    .then(res => console.log(res))
+    .then(res => console.log(res))  //   3
     .catch(err => console.error(err));
 
 function promiseMyAny(promises) {
@@ -42,4 +42,4 @@ const p6 = new Promise((resolve, reject) => {
 });
 promiseMyAny([p4, p5, p6])
     .then(res => console.log(res))
-    .catch(err => console.error(err));
+    .catch(err => console.error(err));  //   All promises were rejected
